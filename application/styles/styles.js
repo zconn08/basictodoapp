@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
   },
   toDoInput: {
     height: 60
+  },
+  completed: {
+    color: 'green'
   }
 });
 

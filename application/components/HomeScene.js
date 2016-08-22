@@ -13,7 +13,10 @@ class HomeScene extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: ['Eat Pizza', 'Go to Store']
+      items: [
+        {txt:'Eat Pizza', completed: false},
+        {txt:'Go to Store', completed: false}
+      ]
     };
   }
 
@@ -21,7 +24,7 @@ class HomeScene extends Component {
     var items = this.state.items;
     var newItem = this.refs["new-item"];
     var text = newItem._lastNativeText;
-    items.push(text);
+    items.push({txt: text, completed: false});
     this.setState({items: items});
     newItem.clear();
   }
@@ -31,12 +34,13 @@ class HomeScene extends Component {
     items.splice(idx, idx + 1);
     this.setState({items: items});
   }
-  //
-  // moveToCreate() {
-  //   this.props.navigator.push({
-  //     title: 'NewItemScene'
-  //   });
-  // }
+  changeStatus(rowID){
+    var items = this.state.items;
+    var idx = parseInt(rowID);
+    var status = items[idx].completed;
+    items[idx].completed = status ? false : true;
+    this.setState({items: items});
+  }
 
   render() {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -46,7 +50,14 @@ class HomeScene extends Component {
         <Text style={styles.toDoHeader}>My To-Do List</Text>
         <ListView
           dataSource={dataSource}
-          renderRow={(rowData, sectionID, rowID) => <Text style={styles.toDoItem} onPress={() => this.deleteToDo(rowID)}>{rowData}</Text>}
+          renderRow={(rowData, sectionID, rowID) =>
+            <Text
+              style={[styles.toDoItem, rowData.completed && styles.completed]}
+              onPress={() => this.changeStatus(rowID)}
+              onLongPress={() => this.deleteToDo(rowID)}>
+              {rowData.txt}
+            </Text>
+          }
         />
         <TextInput
           ref='new-item'
@@ -58,8 +69,5 @@ class HomeScene extends Component {
     );
   }
 }
-// <TouchableHighlight style={styles.button} onPress={this.moveToCreate.bind(this)} underlayColor='steelblue'>
-//   <Text style={styles.buttonText}>Create a New Todo</Text>
-// </TouchableHighlight>
 
 module.exports = HomeScene
