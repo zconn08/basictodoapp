@@ -7,12 +7,13 @@ import {
   ListView,
   TextInput
 } from 'react-native';
-var styles = require('../styles/styles');
+var styles = require('../styles/styles')
+var HomeScene = require('./HomeScene');
 
 class EntryScene extends Component {
   moveToHome() {
     this.props.navigator.push({
-        title: 'List'
+        component: HomeScene
     });
   }
   onBack() {

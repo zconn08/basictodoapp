@@ -18,25 +18,18 @@ import {
 var styles = require('./application/styles/styles');
 
 var EntryScene = require('./application/components/EntryScene');
-var HomeScene = require('./application/components/HomeScene');
 var NewItemScene = require('./application/components/NewItemScene');
 
 class Wandergram extends Component {
   renderScene(route, navigator) {
-    if(route.title === 'Entry') {
-     return (<EntryScene navigator={navigator} />);
-    } else if (route.title === 'List') {
-     return (<HomeScene navigator={navigator} />);
-    }
-    // else if (route.title === 'NewItemScene') {
-    //  return (<NewItemScene navigator={navigator} />);
-    // }
+    var Component = route.component;
+    return (<Component navigator={navigator} />);
   }
 
   render() {
     return (
       <Navigator
-        initialRoute={{ title: 'Entry'}}
+        initialRoute={{ component: EntryScene}}
         renderScene={this.renderScene}
       />
     );
