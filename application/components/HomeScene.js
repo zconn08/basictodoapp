@@ -25,6 +25,12 @@ class HomeScene extends Component {
     this.setState({items: items});
     newItem.clear();
   }
+  deleteToDo(rowID) {
+    var items = this.state.items;
+    var idx = parseInt(rowID);
+    items.splice(idx, idx + 1);
+    this.setState({items: items});
+  }
   //
   // moveToCreate() {
   //   this.props.navigator.push({
@@ -40,11 +46,11 @@ class HomeScene extends Component {
         <Text style={styles.toDoHeader}>My To-Do List</Text>
         <ListView
           dataSource={dataSource}
-          renderRow={(rowData) => <Text style={styles.toDoItem}>{rowData}</Text>}
+          renderRow={(rowData, sectionID, rowID) => <Text style={styles.toDoItem} onPress={() => this.deleteToDo(rowID)}>{rowData}</Text>}
         />
         <TextInput
           ref='new-item'
-          style={{height: 60}}
+          style={styles.toDoInput}
           placeholder='Add a new to-do...'
           onSubmitEditing={(text) => this.addToDo(text)}
         />

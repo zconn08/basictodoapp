@@ -27,9 +27,10 @@ class Wandergram extends Component {
      return (<EntryScene navigator={navigator} />);
     } else if (route.title === 'List') {
      return (<HomeScene navigator={navigator} />);
-    } else if (route.title === 'NewItemScene') {
-     return (<NewItemScene navigator={navigator} />);
     }
+    // else if (route.title === 'NewItemScene') {
+    //  return (<NewItemScene navigator={navigator} />);
+    // }
   }
 
   render() {

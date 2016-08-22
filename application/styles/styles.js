@@ -51,6 +51,9 @@ const styles = StyleSheet.create({
   toDoHeader: {
     fontSize: 40,
     borderBottomColor: 'black'
+  },
+  toDoInput: {
+    height: 60
   }
 });
 
