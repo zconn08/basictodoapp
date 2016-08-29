@@ -20,7 +20,7 @@ var styles = require('./application/styles/styles');
 var EntryScene = require('./application/components/EntryScene');
 var NewItemScene = require('./application/components/NewItemScene');
 
-class Wandergram extends Component {
+class BasicToDoApp extends Component {
   renderScene(route, navigator) {
     var Component = route.component;
     return (<Component navigator={navigator} />);
@@ -36,4 +36,4 @@ class Wandergram extends Component {
   }
 }
 
-AppRegistry.registerComponent('Wandergram', () => Wandergram);
+AppRegistry.registerComponent('BasicToDoApp', () => BasicToDoApp);

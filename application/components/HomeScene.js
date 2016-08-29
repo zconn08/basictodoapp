@@ -31,7 +31,7 @@ class HomeScene extends Component {
   deleteToDo(rowID) {
     var items = this.state.items;
     var idx = parseInt(rowID);
-    items.splice(idx, idx + 1);
+    items.splice(idx, 1);
     this.setState({items: items});
   }
   changeStatus(rowID){

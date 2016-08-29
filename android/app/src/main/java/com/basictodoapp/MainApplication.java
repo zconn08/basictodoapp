@@ -1,4 +1,4 @@
-package com.wandergram;
+package com.basictodoapp;
 
 import android.app.Application;
 import android.util.Log;
